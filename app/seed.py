@@ -1,4 +1,3 @@
-##Creación de la tabla (en caso de no existir) y cargar datos de prueba
 import os
 import pandas as pd
 from sqlalchemy import inspect
