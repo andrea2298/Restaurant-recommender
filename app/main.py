@@ -27,7 +27,6 @@ def startup_event():
 
 templates = Jinja2Templates(directory="templates")
 
-# Ajuste: por defecto apunta a localhost
 N8N_WEBHOOK_URL = os.getenv("N8N_URL", "http://localhost:5678/webhook/openai-cities")
 
 @app.get("/", response_class=HTMLResponse)
@@ -106,7 +105,7 @@ async def recommendations(
 
 def validate_image_file(file_bytes: bytes) -> tuple[bool, str]:
     """Validación de archivos de imagen"""
-    MAX_SIZE = 10 * 1024 * 1024  # 10MB
+    MAX_SIZE = 10 * 1024 * 1024 
     if len(file_bytes) > MAX_SIZE:
         return False, f"La imagen es demasiado grande. Máximo {MAX_SIZE/1024/1024}MB."
     
