@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+jinja2
+sqlalchemy
+psycopg2-binary
+pandas
+requests
+python-multipart
+Pillow
+python-magic
+openai

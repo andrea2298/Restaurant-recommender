@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Error - Recomendador Grima</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f9f9f9; }
+        .error-container { background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 10px; padding: 30px; max-width: 600px; margin: 0 auto; }
+        h1 { color: #721c24; font-size: 1.8rem; }
+        .error-message { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; font-family: monospace; color: #333; }
+        .back-link { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+        .back-link:hover { background: #005fa3; }
+    </style>
+</head>
+<body>
+    <div class="error-container" role="alert">
+        <h1>❌ Error en la Aplicación</h1>
+        
+        <div class="error-message">
+            {{ error }}
+        </div>
+        
+        <p>Por favor, intenta nuevamente o contacta al administrador.</p>
+        
+        <a href="/" class="back-link">Volver al Inicio</a>
+    </div>
+</body>
+</html>

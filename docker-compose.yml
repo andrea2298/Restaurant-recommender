@@ -1,0 +1,59 @@
+version: '3.9'
+
+networks:
+  grima_net:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:16-alpine
+
+    container_name: grima_db
+
+    environment:
+      - POSTGRES_USER=grima
+      - POSTGRES_PASSWORD=grima_pass
+      - POSTGRES_DB=grima_rest
+      - TZ=UTC 
+
+    networks:
+      - grima_net
+
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U grima -d grima_rest"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+
+    container_name: grima_app
+
+    environment:
+      - TZ=America/Tijuana  
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=grima
+      - DB_PASSWORD=grima_pass
+      - DB_NAME=grima_rest
+      - N8N_URL=http://localhost:5678/webhook/openai-cities
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    networks:
+      - grima_net
+
+    ports:
+      - "8000:8000"
+    
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  db_data:
