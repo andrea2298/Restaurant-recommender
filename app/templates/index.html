@@ -1,88 +1,86 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <title>Recomendador de Restaurantes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 2rem;
-            background-color: #f9f9f9;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        form {
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        label {
-            display: block;
-            margin-top: 0.5rem;
-        }
-        input, button {
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            width: 100%;
-            max-width: 400px;
-        }
-        button {
-            background-color: #0078d7;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        button:hover {
-            background-color: #005fa3;
-        }
-        #results, #chat-response {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Recomendador de Restaurantes</h1>
+<html lang = "es">
+    <head>
+        <meta charset = "UTF-8" />
+        
+        <title>Recomendador de Restaurantes</title>
+        
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 2rem;
+                background-color: #f9f9f9;
+            }
+            h1, h2 {
+                color: #333;
+            }
+            form {
+                margin-bottom: 2rem;
+                padding: 1rem;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+            }
+            label {
+                display: block;
+                margin-top: 0.5rem;
+            }
+            input, button {
+                margin-top: 0.5rem;
+                padding: 0.5rem;
+                width: 100%;
+                max-width: 400px;
+            }
+            button {
+                background-color: #0078d7;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+            button:hover {
+                background-color: #005fa3;
+            }
+            #results, #chat-response {
+                margin-top: 2rem;
+                padding: 1rem;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Recomendador de Restaurantes</h1>
+        
+        <form action = "/recommendations" method = "post">
+            <label for = "city">Ciudad:</label>
+            <input type = "text" id = "city" name = "city" required>
+    
+            <label for = "country">País:</label>
+            <input type = "text" id = "country" name = "country" required>
+    
+            <button type = "submit">Buscar restaurantes</button>
+        </form>
+    
+        <div id = "results">
+            
+        </div>
+    
+        <h2>Asistente Gastronómico</h2>
+    
+        <form action = "/api/chat" method = "post" enctype = "multipart/form-data">
+            <label for = "message">Pregunta:</label>
+            <input type = "text" id = "message" name = "message" placeholder = "Ej. Platillos típicos de México">
+    
+            <label for = "image">Subir imagen:</label>
+            <input type = "file" id = "image" name = "image" accept = "image/*">
+    
+            <button type = "submit">Consultar asistente</button>
+        </form>
 
-    <!-- Formulario principal -->
-    <form action="/recommendations" method="post">
-        <label for="city">Ciudad:</label>
-        <input type="text" id="city" name="city" required>
-
-        <label for="country">País:</label>
-        <input type="text" id="country" name="country" required>
-
-        <button type="submit">Buscar restaurantes</button>
-    </form>
-
-    <!-- Sección de resultados -->
-    <div id="results">
-        <!-- Aquí se mostrarán las recomendaciones en recommendations.html -->
-    </div>
-
-    <h2>Asistente Gastronómico</h2>
-
-    <!-- Formulario del chatbot multimodal -->
-    <form action="/api/chat" method="post" enctype="multipart/form-data">
-        <label for="message">Pregunta:</label>
-        <input type="text" id="message" name="message" placeholder="Ej. Platillos típicos de México">
-
-        <label for="image">Subir imagen:</label>
-        <input type="file" id="image" name="image" accept="image/*">
-
-        <button type="submit">Consultar asistente</button>
-    </form>
-
-    <!-- Sección de respuesta del chatbot -->
-    <div id="chat-response">
-        <!-- Aquí se mostrará la respuesta del asistente -->
-    </div>
-</body>
+        <div id = "chat-response">
+            
+        </div>
+    </body>
 </html>
