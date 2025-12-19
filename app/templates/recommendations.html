@@ -1,66 +1,69 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Resultados - Recomendador Grima</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
-        h1 { color: #333; }
-        h2 { color: #555; margin-top: 30px; }
-        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-        .back-link { display: inline-block; margin: 20px 0; padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-        .no-results { color: #999; font-style: italic; }
-    </style>
-</head>
-<body>
-    <h1>🍽️ Resultados de Búsqueda</h1>
-    
-    <a href="/" class="back-link">← Nueva Búsqueda</a>
-    
-    {% if results %}
-        {% for city, restaurants in results.items() %}
-            <h2>📍 Ciudad: {{ city }}</h2>
-            
-            {% if restaurants %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Restaurante</th>
-                            <th scope="col">Cocina</th>
-                            <th scope="col">Precio (1-4)</th>
-                            <th scope="col">Rating</th>
-                            <th scope="col">Total Ratings</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for r in restaurants %}
-                        <tr>
-                            <td><strong>{{ r.name }}</strong></td>
-                            <td>{{ r.cuisine }}</td>
-                            <td>
-                                {% for i in range(r.price) %}💰{% endfor %}
-                                ({{ r.price }})
-                            </td>
-                            <td>
-                                {% for i in range(r.avg_rating|round(0, 'floor')) %}⭐{% endfor %}
-                                {{ "%.1f"|format(r.avg_rating) }}
-                            </td>
-                            <td>{{ r.total_ratings }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p class="no-results">No se encontraron restaurantes en {{ city }}.</p>
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <p class="no-results">No se obtuvieron resultados.</p>
-    {% endif %}
-    
-    <a href="/" class="back-link">← Nueva Búsqueda</a>
-</body>
+<html lang = "es">
+    <head>
+        <meta charset = "UTF-8">
+        
+        <title>Resultados - Recomendador Grima</title>
+        
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 30px; }
+            table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+            th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+            th { background-color: #4CAF50; color: white; }
+            tr:nth-child(even) { background-color: #f2f2f2; }
+            .back-link { display: inline-block; margin: 20px 0; padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+            .no-results { color: #999; font-style: italic; }
+        </style>
+    </head>
+    <body>
+        <h1>Resultados de Búsqueda</h1>
+        
+        <a href = "/" class = "back-link">← Nueva Búsqueda</a>
+        
+        {% if results %}
+            {% for city, restaurants in results.items() %}
+                <h2>Ciudad: {{ city }}</h2>
+                
+                {% if restaurants %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope = "col">Restaurante</th>
+                                <th scope = "col">Cocina</th>
+                                <th scope = "col">Precio (1-4)</th>
+                                <th scope = "col">Rating</th>
+                                <th scope = "col">Total Ratings</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for r in restaurants %}
+                            <tr>
+                                <td><strong>{{ r.name }}</strong></td>
+                                <td>{{ r.cuisine }}</td>
+                                <td>
+                                    {% for i in range(r.price) %}💰{% endfor %}
+                                    ({{ r.price }})
+                                </td>
+                                <td>
+                                    {% for i in range(r.avg_rating|round(0, 'floor')) %}⭐{% endfor %}
+                                    {{ "%.1f"|format(r.avg_rating) }}
+                                </td>
+                                <td>{{ r.total_ratings }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class = "no-results">No se encontraron restaurantes en {{ city }}.</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p class = "no-results">No se obtuvieron resultados.</p>
+        {% endif %}
+        
+        <a href = "/" class = "back-link">← Nueva Búsqueda</a>
+    </body>
 </html>
