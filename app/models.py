@@ -1,4 +1,3 @@
-##Definición de las tablas a utilizar
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import declarative_base
 
@@ -11,6 +10,6 @@ class Restaurant(Base):
     city = Column(String, nullable = False)
     country = Column(String, nullable = False)
     cuisine = Column(String, nullable = False)
-    price = Column(Integer, nullable = False) ##Se dará un rating de 1 a 4
-    avg_rating = Column(Float, nullable = False) ##Se dará un rating de 0 a 5
+    price = Column(Integer, nullable = False) 
+    avg_rating = Column(Float, nullable = False) 
     total_ratings = Column(Integer, nullable = False)
